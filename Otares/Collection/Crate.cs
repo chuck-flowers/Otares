@@ -68,7 +68,7 @@ namespace Otares.Collection
 
             //Adds each of the specified files to the crate
             foreach(var path in tracks)
-                Songs.Add(context.Songs.Find(s => s.Path == path));
+                Songs.Add(context.Songs.Find(s => s.PathString == path));
         }
 
         private void parseColumns()

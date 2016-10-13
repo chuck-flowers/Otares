@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 
 namespace Otares.Collection
 {
@@ -44,7 +43,7 @@ namespace Otares.Collection
         private const string bbgl = "bbgl";
         private const string bkrk = "bkrk";
 
-        static string[] labels = new string[]
+        private static string[] labels = new string[]
         {
             TYPE_FIELD,
             PATH_FIELD,
@@ -85,7 +84,11 @@ namespace Otares.Collection
             bkrk
         };
 
-        //STATIC METHODS
+        /// <summary>
+        /// Creates a song object from a string from the databaseV2 file
+        /// </summary>
+        /// <param name="dbString">The databaseV2 string representation of the song</param>
+        /// <returns>The song object created</returns>
         public static Song Create(string dbString)
         {
             Song toRet = new Song();
@@ -153,6 +156,12 @@ namespace Otares.Collection
             return toRet;
         }
 
+        /// <summary>
+        /// Assigns a string value to a string field with the given databaseV2 label
+        /// </summary>
+        /// <param name="s">The song to perform the property update on</param>
+        /// <param name="f">The databaseV2 field representation for the property to update</param>
+        /// <param name="v">The value to set the field to</param>
         private static void assignStringField(Song s, string f, string v)
         {
             switch (f)
@@ -161,7 +170,7 @@ namespace Otares.Collection
                     s.Type = v;
                     break;
                 case PATH_FIELD:
-                    s.Path = v;
+                    s.PathString = v;
                     break;
                 case SONG_FIELD:
                     s.Title = v;
@@ -218,37 +227,106 @@ namespace Otares.Collection
 
 
         //PUBLIC PROPERTIES
+        /// <summary>
+        /// The title of the song
+        /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// The artist who performs the song
+        /// </summary>
         public string Artist { get; set; }
+
+        /// <summary>
+        /// The album the song appears on
+        /// </summary>
         public string Album { get; set; }
+
+        /// <summary>
+        /// The genre of the song
+        /// </summary>
         public string Genre { get; set; }
+
+        /// <summary>
+        /// The length of the song
+        /// </summary>
         public string Length { get; set; }
+
+        /// <summary>
+        /// The size of the song
+        /// </summary>
         public string Size { get; set; }
+
+        /// <summary>
+        /// The file type of the song
+        /// </summary>
         public string Type { get; set; }
-        public string Path { get; set; }
+
+        /// <summary>
+        /// The string representation of the path to the song
+        /// </summary>
+        public string PathString { get; set; }
+
+        /// <summary>
+        /// The bitrate of the song
+        /// </summary>
         public string Bitrate { get; set; }
+
+        /// <summary>
+        /// The sample rate of the song
+        /// </summary>
         public string SampleRate { get; set; }
+
+        /// <summary>
+        /// The beats per minute of the song
+        /// </summary>
         public string Bpm { get; set; }
+
+        /// <summary>
+        /// The contents of the comment field
+        /// </summary>
         public string Comment { get; set; }
+
+        /// <summary>
+        /// The contents of the group field
+        /// </summary>
         public string Group { get; set; }
+
+        /// <summary>
+        /// The composer of the song
+        /// </summary>
         public string Composer { get; set; }
+
+        /// <summary>
+        /// The year that the song was released
+        /// </summary>
         public string Year { get; set; }
+
+        /// <summary>
+        /// The key the song is in
+        /// </summary>
         public string Key { get; set; }
+
+        /// <summary>
+        /// Whether or not the song has been marked as missing
+        /// </summary>
         public bool IsMissing { get; set; }
+
+        /// <summary>
+        /// Whether or not the song has been marked as played
+        /// </summary>
         public bool IsPlayed { get; set; }
-        
+
         
         //PUBLIC METHODS
 
+        /// <summary>
+        /// Returns the JSON representation of the song
+        /// </summary>
+        /// <returns>The JSON string that represents the song</returns>
         public override string ToString()
         {
-            const int fieldWidth = 25;
-
-            var songString = $"{(Title.Length > fieldWidth ? Title.Remove(fieldWidth - 3) + "..." : Title)}";
-            var artistString = $"{(Artist.Length > fieldWidth ? Artist.Remove(fieldWidth - 3) + "..." : Artist)}";
-            var albumString = $"{(Album.Length > fieldWidth ? Album.Remove(fieldWidth - 3) + "..." : Album)}";
-
-            return $"{songString,-fieldWidth} {artistString,-fieldWidth} {albumString,-fieldWidth}";
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
         }
     }
 }

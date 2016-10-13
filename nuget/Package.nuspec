@@ -3,9 +3,11 @@
   <metadata>
     <id>Otares</id>
     <version>1.0.0</version>
-    <authors>TimothyFlowers</authors>
-    <owners>TimothyFlowers</owners>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+    <title>Otares</title>
+    <authors>Timothy Flowers</authors>
+    <owners>Timothy Flowers</owners>
+    <projectUrl>https://github.com/chuck-flowers/Otares</projectUrl>
+    <iconUrl>https://github.com/chuck-flowers/Otares/blob/master/assets/logo.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library for reading the database used by Serato DJ</description>
     <releaseNotes>Initial Release. </releaseNotes>

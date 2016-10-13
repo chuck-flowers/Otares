@@ -32,7 +32,7 @@ namespace Otares.Collection
 
             //Builds a SongModel from each entry in the database
             for (int i = 1; i < entries.Length; i++)
-                Songs.Add(new Song(entries[i]));
+                Songs.Add(Song.Create(entries[i]));
 
             //TODO: Add support for crates
         }
