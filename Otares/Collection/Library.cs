@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Otares
+namespace Otares.Collection
 {
-    public class OtaresDb
+    public class Library
     {
         //CONSTRUCTORS
 
-        public OtaresDb() : this(null) { }
+        public Library() : this(null) { }
 
-        public OtaresDb(string dbContent)
+        public Library(string dbContent)
         {
             initDatabase(dbContent);
         }
@@ -18,9 +18,9 @@ namespace Otares
         
         //PUBLIC PROPERTIES
         
-        public List<SongModel> Songs { get; } = new List<SongModel>();
+        public List<Song> Songs { get; } = new List<Song>();
 
-        public List<CrateModel> Crates { get; } = new List<CrateModel>();
+        public List<Crate> Crates { get; } = new List<Crate>();
 
 
         //PRIVATE METHODS
@@ -32,7 +32,7 @@ namespace Otares
 
             //Builds a SongModel from each entry in the database
             for (int i = 1; i < entries.Length; i++)
-                Songs.Add(new SongModel(entries[i]));
+                Songs.Add(new Song(entries[i]));
 
             //TODO: Add support for crates
         }

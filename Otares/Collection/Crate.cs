@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Otares
+namespace Otares.Collection
 {
-    public class CrateModel
+    public class Crate
     {
         private const string CRATE_FIELD = "osrt";
         
         //CONSTRUCTOR
 
-        public CrateModel(string name, string content, OtaresDb context)
+        public Crate(string name, string content, Library context)
         {
             Name = name;
 
@@ -44,12 +44,12 @@ namespace Otares
 
         public string Name { get; set; }
 
-        public List<SongModel> Songs { get; } = new List<SongModel>();
+        public List<Song> Songs { get; } = new List<Song>();
 
 
         //PRIVATE METHODS
 
-        private void parseTracks(string content, OtaresDb context)
+        private void parseTracks(string content, Library context)
         {
             //Gets each individual track
             IEnumerable<string> tracks = content.Split(new string[] { "otrk" }, StringSplitOptions.RemoveEmptyEntries);

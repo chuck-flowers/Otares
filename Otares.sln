@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otares", "Otares.NET\Otares.csproj", "{AEDB2331-9F1F-4211-88CD-B7EDC802851C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtaresTest", "OtaresTest\OtaresTest.csproj", "{9C0C8978-58D3-490C-B421-756CBFE1A23C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Otares", "Otares\Otares.csproj", "{AEDB2331-9F1F-4211-88CD-B7EDC802851C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{AEDB2331-9F1F-4211-88CD-B7EDC802851C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEDB2331-9F1F-4211-88CD-B7EDC802851C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEDB2331-9F1F-4211-88CD-B7EDC802851C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C0C8978-58D3-490C-B421-756CBFE1A23C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C0C8978-58D3-490C-B421-756CBFE1A23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C0C8978-58D3-490C-B421-756CBFE1A23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C0C8978-58D3-490C-B421-756CBFE1A23C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
