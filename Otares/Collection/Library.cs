@@ -1,29 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Otares.Collection
 {
     public class Library
     {
-        //CONSTRUCTORS
-
+        /// <summary>
+        /// Default constructor for the library
+        /// </summary>
         public Library() : this(null) { }
 
+        /// <summary>
+        /// Constructor that takes the contents of the databaseV2 file as its parameter
+        /// </summary>
+        /// <param name="dbContent">The string content of the databaseV2 file</param>
         public Library(string dbContent)
         {
             initDatabase(dbContent);
         }
         
         
-        //PUBLIC PROPERTIES
-        
+        /// <summary>
+        /// The collection of songs within the library
+        /// </summary>
         public List<Song> Songs { get; } = new List<Song>();
 
+        /// <summary>
+        /// The collection of crates contained within the library
+        /// </summary>
         public List<Crate> Crates { get; } = new List<Crate>();
 
-
-        //PRIVATE METHODS
 
         private void initDatabase(string content)
         {
