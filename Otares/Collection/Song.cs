@@ -95,45 +95,45 @@ namespace Otares.Collection
 
             for (int farthestReached = 0; farthestReached < dbString.Length;)
             {
-                int startOfString = -1;
-                int endOfString = -1;
-                
                 //Gets the start index
+                int startOfLabel = -1;
+				string? fieldLabel = null;
                 foreach(var l in labels)
                 {
-                    startOfString = dbString.IndexOf(l, farthestReached);
-
-                    if (startOfString >= 0)
+                    startOfLabel = dbString.IndexOf(l, farthestReached);
+                    if (startOfLabel >= 0)
                     {
-                        farthestReached = startOfString + l.Length;
+						fieldLabel = dbString.Substring(startOfLabel, l.Length);
+                        farthestReached = startOfLabel + l.Length;
                         break;
                     }
                 }
 
                 //If a field was not found, there are no more fields
-                if (startOfString == -1)
-                    break;
+                if (fieldLabel == null)
+				{
+					break;
+				}
 
                 //Gets the end index
-                foreach(var l in labels)
-                {
-                    endOfString = dbString.IndexOf(l, farthestReached);
+				string? fieldValue = null;
+				int endOfValue = labels
+					.Select(l => dbString.IndexOf(l, farthestReached))
+					.Where(x => x != -1)
+					.OrderBy(x => x)
+					.FirstOrDefault();
 
-                    if (startOfString >= 0)
-                        break;
-                }
+				// If no next field was found, this value goes to the end of the string
+				if (endOfValue == 0)
+				{
+					endOfValue = dbString.Length;
+				}
 
-                //If no next field was found, this is the last field
-                if (endOfString == -1)
-                    endOfString = dbString.Length;
+				// Extracts the field value from the DB string
+				fieldValue = dbString.Substring(farthestReached, endOfValue - farthestReached);
 
                 //Updates the farthest reached
-                farthestReached = endOfString;
-
-                //Isolates the chunk of string to process and cuts out the field and value
-                string fieldValueString = dbString.Substring(startOfString, endOfString - startOfString);
-                string fieldLabel = fieldValueString.Remove(4);
-                string rawString = fieldValueString.Substring(fieldLabel.Length);
+                farthestReached = endOfValue;
 
                 //Performs different actions based off the type of field
                 switch(fieldLabel[0])
@@ -141,10 +141,14 @@ namespace Otares.Collection
                     case 'p':
                     case 't':
                         string stringValue = "";
-                        foreach(char c in rawString)
+
+                        foreach(char c in fieldValue)
                         {
                             if (c == 0)
-                                continue;
+							{
+								continue;
+							}
+
                             stringValue += c;
                         }
 
